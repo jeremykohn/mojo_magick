@@ -62,6 +62,19 @@ class MojoMagickTest < MiniTest::Unit::TestCase
     end
   end
 
+  def test_image_resize_with_bad_params
+    # test basic resizing
+    reset_images
+    orig_image_size = File::size(@test_image)
+    size_test_temp = Tempfile::new('mojo_test')
+    size_test = size_test_temp.path
+    begin 
+      retval = MojoMagick::resize(@test_image, size_test, {:w=>100, :ht=>100})
+    rescue MojoMagick::MojoError => ex
+      assert ex.message.include?('Unknown options')
+    end
+  end
+
   def test_shrink_with_big_dimensions
     # image shouldn't resize if we specify very large dimensions and specify "shrink_only"
     reset_images

@@ -125,7 +125,7 @@ module MojoMagick
     elsif !options[:percent].nil?
       geometry = "#{options[:percent]}%"
     else
-      raise MojoMagickError, "Unknown options for method resize: #{options.inspect}"
+      raise MojoError, "Unknown options for method resize: #{options.inspect}"
     end
     if !options[:fill].nil? && !options[:crop].nil?
       extras << "-gravity Center"
@@ -133,11 +133,6 @@ module MojoMagick
     end
     retval = raw_command("convert", "\"#{source_file}\" -resize \"#{geometry}#{scale_options}\" #{extras.join(' ')} \"#{dest_file}\"")
     dest_file
-  end
-
-  def MojoMagick::available_fonts
-    # returns width, height of image if available, nil if not
-    Font.all
   end
 
   # returns an empty hash or a hash with :width and :height set (e.g. {:width => INT, :height => INT})

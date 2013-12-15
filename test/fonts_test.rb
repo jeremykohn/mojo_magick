@@ -9,4 +9,5 @@ class FontsTest < MiniTest::Unit::TestCase
     assert fonts.first.name
     assert (fonts.first.name.is_a? String)
   end
+
 end
