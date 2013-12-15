@@ -16,8 +16,5 @@ module MojoMagick
       end
     end
 
-    def self.all
-      ImageMagick::Font.all.map{|font_info| Font.new(font_info)}
-    end
   end
 end

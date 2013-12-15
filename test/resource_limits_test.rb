@@ -6,13 +6,6 @@ class ResourceLimitsTest < MiniTest::Unit::TestCase
     @orig_limits = MojoMagick::get_default_limits
   end
 
-  def test_set_limits
-    # set area to 32mb limit
-    MojoMagick::set_limits(:area => '32mb')
-    new_limits = MojoMagick::get_current_limits
-    assert_equal '32mb', new_limits[:area].downcase
-  end
-
   def test_get_limits
     assert(@orig_limits.size >= 7)
   end
@@ -33,7 +26,15 @@ class ResourceLimitsTest < MiniTest::Unit::TestCase
     assert_equal @orig_limits[:area], new_limits[:area]
   end
 
+
   def test_set_limits
+    # set area to 32mb limit
+    MojoMagick::set_limits(:area => '32mb')
+    new_limits = MojoMagick::get_current_limits
+    assert_equal '32mb', new_limits[:area].downcase
+  end
+
+  def test_set_limits_complex
     # set memory to 64 mb, disk to 0 and
     MojoMagick::set_limits(:memory => '64mb', :disk => '0b')
     new_limits = MojoMagick::get_current_limits(:show_actual_values => true)

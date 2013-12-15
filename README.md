@@ -184,6 +184,13 @@ Availablility
 
 Recent Changes
 ==============
+
+#### Version 0.6.0
+
+* removed MojoMagick::Font.all method
+* removed MojoMagick::available_fonts method
+* moved ImageMagick::Fonts to ImageMagick::Font
+
 #### Version 0.5.4
 
 * Include image magick commandline failure from raw_command (on failure)
